@@ -4,7 +4,7 @@ import string
 
 def create_grid(width, height):
     """Creates an empty grid filled with random letters."""
-    grid = [[random.choice(string.ascii_uppercase) for _ in range(width)] for _ in range(height)]
+    grid = [["." for _ in range(width)] for _ in range(height)]
     return grid
 
 
@@ -27,8 +27,7 @@ def place_word(word, grid):
             c = start_col + i * direction[1]
 
             if not (0 <= r < height and 0 <= c < width) or \
-                    (grid[r][c] != char and grid[r][c] != random.choice(
-                        string.ascii_uppercase)):  # Allow overwriting random letters
+                    (grid[r][c] != char and grid[r][c] != "."):
                 can_place = False
                 break
 
@@ -43,13 +42,11 @@ def place_word(word, grid):
 
 
 def print_grid(grid):
-    """Prints the word search grid."""
     for row in grid:
         print(" ".join(row))
 
 
 def check_word(word, grid, found_words):
-    """Checks if a word exists in the grid and marks it as found."""
     height = len(grid)
     width = len(grid[0])
 
@@ -84,15 +81,20 @@ def check_word(word, grid, found_words):
 
 
 # Game setup
-grid_width = 20
-grid_height = 20
-words_to_find = ["COZIER", "HURRYING", "HEAVIEST", "VICTORIOUS", "DIFFICULTIES", 'DYNAMITE', 'HYDRANT', 'ANAYLZE',
-                 'TYRANT', 'ENCYCLOPEDIA', 'CONNECTICUT', 'DELAWARE', 'APPETITE', 'BISCUIT']
+grid_width = 12
+grid_height = 12
+words_to_find = ["Toast", "Ham", "Pencil", "Snake", "Puzzle", "Game", "Computer", "Bat", "Hat", "Cheese"]
+words_to_find = [word.upper() for word in words_to_find]
 
 grid = create_grid(grid_width, grid_height)
 
 for word in words_to_find:
     place_word(word, grid)
+
+for r in range(grid_height):
+    for c in range(grid_width):
+        if(grid[r][c] == "."):
+            grid[r][c] = random.choice(string.ascii_uppercase)
 
 print("Find these words:")
 print(", ".join(words_to_find))
