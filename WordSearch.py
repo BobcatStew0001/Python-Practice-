@@ -1,15 +1,19 @@
 import random
 import string
 
+print("Welcome to WordSearch!")
+print("My name is Anton and I have created a word search for you.")
+name = input("What is your name? ")
+print("Hello, " + name + "!")
+print("All of the words are in the search are SEC School Mascots")
+print(f"Good Luck {name}!")
 
 def create_grid(width, height):
-    """Creates an empty grid filled with random letters."""
     grid = [["." for _ in range(width)] for _ in range(height)]
     return grid
 
 
 def place_word(word, grid):
-    """Attempts to place a word in the grid randomly."""
     height = len(grid)
     width = len(grid[0])
     word_placed = False
@@ -81,9 +85,24 @@ def check_word(word, grid, found_words):
 
 
 # Game setup
-grid_width = 12
-grid_height = 12
-words_to_find = ["Toast", "Ham", "Pencil", "Snake", "Puzzle", "Game", "Computer", "Bat", "Hat", "Cheese"]
+grid_width = 20
+grid_height = 20
+words_to_find = [
+    "Rebels",
+    "Bulldogs",
+    "Bulldogs",
+    "Gators",
+    "Tigers",
+    "Tigers",
+    "Tide",
+    "Gamecocks",
+    "Aggies",
+    "Longhorns",
+    "Vols",
+    "Tigers",
+    "Commadores",
+    "Sooners",
+]
 words_to_find = [word.upper() for word in words_to_find]
 
 grid = create_grid(grid_width, grid_height)
